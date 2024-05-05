@@ -30,6 +30,14 @@ img { max-width: 100%; }
 Main Components 
 
 -------------------------------- */
+
+.logo-img {
+  width: 120px;
+  height: 60px;
+  color: #21272c;
+
+}
+
 .cd-header {
   position: absolute;
   z-index: 2;
