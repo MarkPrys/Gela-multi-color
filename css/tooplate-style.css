@@ -210,15 +210,23 @@ button:focus { outline: none; }
 
 /* footer */
 .tm-social-link {
-	background-color: rgba(255,255,255,0.40);
+	/* background-color: rgba(255,255,255,0.40); */
     color: black;
     display: inline-block;
-    width: 35px;
-    height: 35px;
+    width: 34px;
+    height: 34px;
     text-align: center;
     padding-top: 5px;
-    margin-right: 10px;
+    margin-right: 14px;
 }
+
+.facebook-logo
+.instagram-logo
+.platform-logo {
+	display: flex;
+	
+}
+
 
 .tm-social-link:last-child { margin-right: 0; }
 
