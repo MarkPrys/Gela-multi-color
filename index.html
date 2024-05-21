@@ -583,7 +583,7 @@ http://www.tooplate.com/view/2086-multi-color
                                                 <p class="tm-text">Pellentesque euismod, sem nec euismod interdum, odio elit venenatis est, gravida aliquet velit velit a ex. In luctus orci et orci lobortis, quis sagittis nibh laoreet.</p>                                                
                                                 
                                                 <!-- contact form -->
-                                                <form action="index.html" method="post" class="tm-contact-form">
+                                                <form method="post" class="tm-contact-form">
 
                                                     <div class="form-group">
                                                         <input type="text" id="contact_name" name="contact_name" class="form-control" placeholder="Name"  required/>
@@ -602,11 +602,11 @@ http://www.tooplate.com/view/2086-multi-color
                                                 </form>  
                                             </div>
 
-                                            <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-2-col-textbox-2 tm-textbox-padding tm-textbox-padding-contact">
+                                            <!-- <div class="tm-bg-white-translucent text-xs-left tm-textbox tm-2-col-textbox-2 tm-textbox-padding tm-textbox-padding-contact">
                                                 <h2 class="tm-contact-info">794 Old Street 12120, San Francisco, CA</h2>
-                                                <!-- google map goes here -->
+                                               
                                                 <div id="google-map"></div>
-                                            </div>
+                                            </div> -->
 
                                         </div>
 
@@ -784,7 +784,42 @@ http://www.tooplate.com/view/2086-multi-color
                 loadGoogleMap(); // Google Map
             });
 
-        </script>            
+        </script>      
+        
+        <script>
+            document.getElementById('contactForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+        
+                // Отримання даних з форми
+                const formData = new FormData(this);
+        
+                // Перетворення FormData в об'єкт
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+        
+                // Відправка POST запиту
+                fetch('http://65.108.210.254:5003/post', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    // Тут можна додати обробку успішної відповіді
+                })
+                location.reload()
+                .catch((error) => {
+                    console.error('Error:', error);
+                    // Тут можна додати обробку помилки
+                });
+            });
+            
+        </script>
 
 </body>
 </html>
