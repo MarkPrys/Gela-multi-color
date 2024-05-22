@@ -793,16 +793,16 @@ http://www.tooplate.com/view/2086-multi-color
         <script>
             document.getElementById('contactForm').addEventListener('submit', function(event) {
                 event.preventDefault();
-        
+                
                 // Отримання даних з форми
                 const formData = new FormData(this);
-        
+                
                 // Перетворення FormData в об'єкт
                 const data = {};
                 formData.forEach((value, key) => {
                     data[key] = value;
                 });
-        
+                
                 // Відправка POST запиту
                 fetch('https://codybitapi.pp.ua/post', {
                     method: 'POST',
@@ -814,15 +814,19 @@ http://www.tooplate.com/view/2086-multi-color
                 .then(response => response.json())
                 .then(data => {
                     console.log('Success:', data);
-                    // Тут можна додати обробку успішної відповіді
+                    // Обробка успішної відповіді
+                    alert('Форма успішно відправлена!');
+                    // Очищення форми
+                    document.getElementById('contactForm').reset();
                 })
-                // location.reload()
-                // .catch((error) => {
-                //     console.error('Error:', error);
-                // });
+                .catch((error) => {
+                    console.error('Error:', error);
+                    // Обробка помилок (необов'язково)
+                    alert('Сталася помилка під час відправки форми. Спробуйте ще раз.');
+                });
             });
-            
         </script>
+        
 
         
 
