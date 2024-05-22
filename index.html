@@ -791,6 +791,9 @@ http://www.tooplate.com/view/2086-multi-color
         </script>      
         
         <script>
+            import 'izitoast/dist/css/iziToast.min.css';
+            import iziToast from 'izitoast/dist/js/iziToast.min.js';
+
             document.getElementById('contactForm').addEventListener('submit', function(event) {
                 event.preventDefault();
                 
@@ -813,16 +816,16 @@ http://www.tooplate.com/view/2086-multi-color
                 })
                 .then(response => response.json())
                 .then(data => {
-                    console.log('Success:', data);
-                    // Обробка успішної відповіді
-                    alert('Your request has been sent successfully!');
+                    iziToast.success({
+                      message: 'Your request has been sent successfully!',
+                    });
                     // Очищення форми
                     document.getElementById('contactForm').reset();
                 })
                 .catch((error) => {
-                    console.error('Error:', error);
-                    // Обробка помилок (необов'язково)
-                    alert('Error! Please try again.');
+                    iziToast.error({
+                      message: 'Error! Try again',
+                    });
                 });
             });
         </script>
