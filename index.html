@@ -794,7 +794,7 @@ http://www.tooplate.com/view/2086-multi-color
 
         <script src="https://cdn.jsdelivr.net/npm/izitoast"></script>
         
-        <script>
+        <!-- <script>
 
             document.getElementById('contactForm').addEventListener('submit', function(event) {
                 event.preventDefault();
@@ -809,7 +809,9 @@ http://www.tooplate.com/view/2086-multi-color
                 });
                 
                 // Відправка POST запиту
-                fetch('https://codybitapi.pp.ua/post', {
+                const botToken = '6855978992:AAGoy9MG1ZNjvLQFOmeSZ6UCKcaJ8-95wF8'
+
+                fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -829,6 +831,66 @@ http://www.tooplate.com/view/2086-multi-color
                       message: 'Error! Try again',
                     });
                 });
+            });
+        </script> -->
+
+        <script>
+
+            document.getElementById('contactForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                // Отримання даних з форми
+                const formData = new FormData(this);
+                
+                // Перетворення FormData в об'єкт
+                const data = {};
+                formData.forEach((value, key) => {
+                    data[key] = value;
+                });
+                console.log(data)
+                //---------------------------------------------
+                function sendTelegramMessage(botToken, chatId, message) {
+                    const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+                
+                    const params = {
+                        chat_id: chatId,
+                        text: message
+                    };
+                
+                    fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(params)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.ok) {
+                            iziToast.success({
+                      message: 'Your request has been sent successfully!',
+                    });
+                        } else {
+                            iziToast.error({
+                      message: 'Error! Try again',
+                    });
+                        }
+                    })
+                    .catch(error => {
+                        iziToast.error({
+                      message: 'Error! Try again',
+                    });
+                    });
+                }
+
+                // Використання функції:
+                const botToken = '6855978992:AAGoy9MG1ZNjvLQFOmeSZ6UCKcaJ8-95wF8';
+                const chatId = '178996813';
+                const message = "Name: "+data.contact_name +"\nEmail: "+data.contact_email+"\nMessage: "+data.contact_message;
+
+                sendTelegramMessage(botToken, chatId, message);
+                //---------------------------------------------
+                
             });
         </script>
         
