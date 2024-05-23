@@ -16,7 +16,7 @@ body {
   font-family: "Open Sans", sans-serif;
   color: #2c343b;
   background-color: #f2f2f2;
-}
+}logo-img
 
 a {
   color: #d44457;
@@ -32,11 +32,49 @@ Main Components
 -------------------------------- */
 
 .logo-img {
-  width: 120px;
+  width: 60px;
+  height: 60px;
+  padding: 10px;
+  transition: width 0.3s, height 0.3s; /* Додамо плавний перехід для зміни розміру */
+}
+
+@media (min-width: 720px) {
+  .logo-img {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* Додаткові медіа-запити для різних розмірів екрану */
+@media (min-width: 1024px) {
+  .logo-img {
+    width: 90px;
+    height: 90px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+
+/* .logo-img {
+  width: 60px;
   height: 60px;
   color: #21272c;
-
+  padding: 10px;
 }
+
+@media (min-width: 720px) {
+  .logo-img {
+    width: 110px;
+    height: 110px;
+
+  }
+} */
 
 .cd-header {
   position: absolute;
